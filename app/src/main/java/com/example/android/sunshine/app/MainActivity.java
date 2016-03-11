@@ -1,17 +1,9 @@
 package com.example.android.sunshine.app;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,7 +14,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ForecastFragment())
                     .commit();
         }
     }
@@ -49,42 +41,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        ArrayAdapter<String> mForecastAdapter;
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
 
-            ArrayList fakeData = new ArrayList<String>();
-            fakeData.add("Montag - Sonne - 6 / 18");
-            fakeData.add("Dienstag - Nebel - 4 / 12");
-            fakeData.add("Mittwoch - Wolken - 4 / 9");
-            fakeData.add("Donnerstag - Regen - 0 / 4");
-            fakeData.add("Freitag - Sonne - 2 / 6");
-            fakeData.add("Samstag - Schnee - -4 / 0");
-            fakeData.add("Sonntag - Sturm - 5 / 12");
-
-            //Array Adapter erstellen
-             mForecastAdapter = new ArrayAdapter<String>(
-                     getActivity(),                         //Current Context
-                     R.layout.list_item_forecast,           // Layout ID
-                     R.id.list_item_forecast_textview,      // ID of Textview to populate
-                     fakeData);                             // Data
-
-            ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
-            listView.setAdapter(mForecastAdapter);
-
-            return rootView;
-        }
     }
-}
+
+
